@@ -1,7 +1,7 @@
 # imex
 ## Introduction
 ## File Formats
-### Accounts
+### Accounts.tsv
 
 A text file consisting of a version line and one line for each non-team account in the contest. Each line has tab separated fields as defined below.
 
@@ -21,7 +21,7 @@ Then follow several lines with the following format (one per account).
 | 3     | Username | austrin | string |
 | 4     | Password | B!5MWJiy | string |
 
-### Teams
+### Teams.tsv
 
 A text file consisting of a version line and one line for each team in the contest. Each line has tab separated fields as defined below.
 
@@ -43,3 +43,7 @@ Then follow several lines with the following format (one per team).
 | 5     | Institution name | University of Virginia | string |
 | 6     | Institution short name | U Virginia | string |
 | 7     | Country Code | USA | string ISO 3166-1 alpha-3 |
+
+Account Types are: team, judge, admin, analyst.
+
+For accounts of type team username is on the form "team-nnn" where "nnn" is the zero padded team number as given in teams.tsv.
