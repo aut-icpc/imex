@@ -42,7 +42,7 @@ Then follow several lines with the following format (one per team).
 | 4     | Team name | Hoos | string |
 | 5     | Institution name | University of Virginia | string |
 | 6     | Institution short name | U Virginia | string |
-| 7     | Country Code | USA | string ISO 3166-1 alpha-3 |
+| 7     | Country Code | USA | string [ISO 3166-1 alpha-3](http://www.nationsonline.org/oneworld/country_code_list.htm) |
 
 Account Types are: team, judge, admin, analyst.
 
