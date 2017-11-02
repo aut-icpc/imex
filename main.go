@@ -66,7 +66,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fao, err := os.Create("teams-onsite.tsv")
+	fao, err := os.Create("accounts-online.tsv")
 	if err != nil {
 		panic(err)
 	}
