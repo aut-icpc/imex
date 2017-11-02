@@ -15,25 +15,46 @@ import (
 	"fmt"
 	"os"
 
-	"./types"
+	"github.com/aut-icpc/imex/lib"
 )
 
 func main() {
 	var rs map[string]map[int]imex.Register
+	var fn string
 
-	f, err := os.Open("export.json")
+	fmt.Printf("AUT-ICPC JSON Filename: ")
+	fmt.Scanf("%s", &fn)
+
+	f, err := os.Open(fn)
 	if err != nil {
 		panic(err)
 	}
 	json.NewDecoder(f).Decode(&rs)
 
 	// Onsite
-	fmt.Println("Onsite:")
+	fts, err := os.Create("teams-onsite.tsv")
+	if err != nil {
+		panic(err)
+	}
+	fas, err := os.Create("accounts-onsite.tsv")
+	if err != nil {
+		panic(err)
+	}
+	fts.WriteString("onsite-teams\t1\n")
+	fas.WriteString("onsite-accounts\t1\n")
 	for id, r := range rs["onsite"] {
-		fmt.Printf("%d: %v\n", id, r)
+		t := imex.Team{
+			Number:      id + 100,
+			Name:        r.Name,
+			Institution: r.Institute,
+			CountryCode: imex.CountryCodes[r.Site],
+		}
+		fts.WriteString(fmt.Sprintf("%d\t\t3\t%s\t%s\t%s\t%s\n", t.Number, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
 	}
 
 	// Online
+	os.Open("teams-online.tsv")
+	os.Open("teams-onsite.tsv")
 	fmt.Println("Online:")
 	for id, r := range rs["onsite"] {
 		fmt.Printf("%d: %v\n", id, r)
