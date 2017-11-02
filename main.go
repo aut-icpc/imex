@@ -62,7 +62,7 @@ func main() {
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
-			Username: fmt.Sprintf("t-%3d", t.Number),
+			Username: fmt.Sprintf("t-%03d", t.Number),
 			Password: fmt.Sprintf("p%d", rand.Intn(100)),
 		}
 		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
@@ -94,7 +94,7 @@ func main() {
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
-			Username: fmt.Sprintf("t-%3d", t.Number),
+			Username: fmt.Sprintf("t-%03d", t.Number),
 			Password: fmt.Sprintf("P%d", rand.Intn(100)),
 		}
 		fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
