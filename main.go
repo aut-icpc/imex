@@ -46,11 +46,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fts.WriteString("onsite-teams\t1\n")
-	fas.WriteString("onsite-accounts\t1\n")
+	fts.WriteString("teams\t1\n")
+	fas.WriteString("accounts\t1\n")
 	for id, r := range rs["onsite"] {
 		t := imex.Team{
-			Number:       id + 100,
+			Number:       id + 1,
 			Name:         r.Name,
 			Institution:  r.Institute,
 			CountryCode:  imex.CountryCodes[r.Site],
@@ -76,11 +76,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fto.WriteString("online-teams\t1\n")
-	fao.WriteString("online-accounts\t1\n")
+	fto.WriteString("teams\t1\n")
+	fao.WriteString("accounts\t1\n")
 	for id, r := range rs["online"] {
 		t := imex.Team{
-			Number:       id + 200,
+			Number:       id + 1,
 			Name:         r.Name,
 			Institution:  r.Institute,
 			CountryCode:  imex.CountryCodes[strings.Title(r.Site)],
