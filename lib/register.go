@@ -15,4 +15,9 @@ type Register struct {
 	Name      string `json:"team_name"`
 	Institute string `json:"institute_name"`
 	Site      string
+	Members   map[string]rMember
+}
+
+type rMember struct {
+	Email string `json:"email"`
 }

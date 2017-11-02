@@ -19,4 +19,5 @@ type Team struct {
 	Institution     string
 	InstitutionCode string
 	CountryCode     string
+	PrimaryEmail    string
 }
