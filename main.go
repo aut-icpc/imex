@@ -15,6 +15,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 
 	"github.com/aut-icpc/imex/lib"
 )
@@ -61,10 +62,30 @@ func main() {
 	}
 
 	// Online
-	os.Open("teams-online.tsv")
-	os.Open("teams-onsite.tsv")
-	fmt.Println("Online:")
-	for id, r := range rs["onsite"] {
-		fmt.Printf("%d: %v\n", id, r)
+	fto, err := os.Create("teams-online.tsv")
+	if err != nil {
+		panic(err)
+	}
+	fao, err := os.Create("teams-onsite.tsv")
+	if err != nil {
+		panic(err)
+	}
+	fto.WriteString("online-teams\t1\n")
+	fao.WriteString("online-accounts\t1\n")
+	for id, r := range rs["online"] {
+		t := imex.Team{
+			Number:      id + 200,
+			Name:        r.Name,
+			Institution: r.Institute,
+			CountryCode: imex.CountryCodes[strings.Title(r.Site)],
+		}
+		fto.WriteString(fmt.Sprintf("%d\t\t3\t%s\t%s\t%s\t%s\n", t.Number, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
+		a := imex.Account{
+			Type:     "team",
+			FullName: t.Name,
+			Username: fmt.Sprintf("t-%3d", t.Number),
+			Password: fmt.Sprintf("P%d", rand.Intn(100)),
+		}
+		fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
 	}
 }
