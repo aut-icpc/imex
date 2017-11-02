@@ -12,8 +12,7 @@ package imex
 
 // Register of AUT-ICPC
 type Register struct {
-	Name      string
-	Institute string
+	Name      string `json:"team_name"`
+	Institute string `json:"institute_name"`
 	Site      string
-	Status    string
 }
