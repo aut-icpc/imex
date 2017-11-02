@@ -42,6 +42,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fus, err := os.Create("userpass-onsite.txt")
+	if err != nil {
+		panic(err)
+	}
 	fts.WriteString("onsite-teams\t1\n")
 	fas.WriteString("onsite-accounts\t1\n")
 	for id, r := range rs["onsite"] {
@@ -59,6 +63,7 @@ func main() {
 			Password: fmt.Sprintf("p%d", rand.Intn(100)),
 		}
 		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
+		fus.WriteString(fmt.Sprintf("- %s: %s %s\n", a.FullName, a.Username, a.Password))
 	}
 
 	// Online
