@@ -50,10 +50,11 @@ func main() {
 	fas.WriteString("onsite-accounts\t1\n")
 	for id, r := range rs["onsite"] {
 		t := imex.Team{
-			Number:      id + 100,
-			Name:        r.Name,
-			Institution: r.Institute,
-			CountryCode: imex.CountryCodes[r.Site],
+			Number:       id + 100,
+			Name:         r.Name,
+			Institution:  r.Institute,
+			CountryCode:  imex.CountryCodes[r.Site],
+			PrimaryEmail: r.Members["first"].Email,
 		}
 		fts.WriteString(fmt.Sprintf("%d\t\t3\t%s\t%s\t%s\t%s\n", t.Number, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
 		a := imex.Account{
@@ -79,10 +80,11 @@ func main() {
 	fao.WriteString("online-accounts\t1\n")
 	for id, r := range rs["online"] {
 		t := imex.Team{
-			Number:      id + 200,
-			Name:        r.Name,
-			Institution: r.Institute,
-			CountryCode: imex.CountryCodes[strings.Title(r.Site)],
+			Number:       id + 200,
+			Name:         r.Name,
+			Institution:  r.Institute,
+			CountryCode:  imex.CountryCodes[strings.Title(r.Site)],
+			PrimaryEmail: r.Members["first"].Email,
 		}
 		fto.WriteString(fmt.Sprintf("%d\t\t3\t%s\t%s\t%s\t%s\n", t.Number, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
 		a := imex.Account{
