@@ -8,7 +8,7 @@
  * +===============================================
  */
 
-package impex
+package imex
 
 // Account of domjudge
 type Account struct {

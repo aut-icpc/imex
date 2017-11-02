@@ -8,7 +8,7 @@
  * +===============================================
  */
 
-package impex
+package imex
 
 // Team of domjudge
 type Team struct {
