@@ -51,12 +51,14 @@ func main() {
 	for id, r := range rs["onsite"] {
 		t := imex.Team{
 			Number:       id + 1,
+			EId:          id + 100,
+			GId:          3,
 			Name:         r.Name,
 			Institution:  r.Institute,
 			CountryCode:  imex.CountryCodes[r.Site],
 			PrimaryEmail: r.Members["first"].Email,
 		}
-		fts.WriteString(fmt.Sprintf("%d\t\t3\t%s\t%s\t%s\t%s\n", t.Number, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
+		fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
@@ -81,12 +83,14 @@ func main() {
 	for id, r := range rs["online"] {
 		t := imex.Team{
 			Number:       id + 1,
+			EId:          id + 100,
+			GId:          3,
 			Name:         r.Name,
 			Institution:  r.Institute,
 			CountryCode:  imex.CountryCodes[strings.Title(r.Site)],
 			PrimaryEmail: r.Members["first"].Email,
 		}
-		fto.WriteString(fmt.Sprintf("%d\t\t3\t%s\t%s\t%s\t%s\n", t.Number, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
+		fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
