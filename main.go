@@ -18,6 +18,7 @@ import (
 	"strings"
 
 	"github.com/aut-icpc/imex/lib"
+	"github.com/aut-icpc/imex/mail"
 )
 
 func main() {
@@ -62,7 +63,7 @@ func main() {
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
-			Username: fmt.Sprintf("t-%03d", t.Number),
+			Username: fmt.Sprintf("%03d", t.Number),
 			Password: fmt.Sprintf("p%d", rand.Intn(100)),
 		}
 		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
@@ -94,9 +95,10 @@ func main() {
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
-			Username: fmt.Sprintf("t-%03d", t.Number),
-			Password: fmt.Sprintf("P%d", rand.Intn(100)),
+			Username: fmt.Sprintf("%03d", t.Number),
+			Password: fmt.Sprintf("P%03d%03d", rand.Intn(1000), rand.Intn(1000)),
 		}
 		fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
+		mail.SendMail(a.FullName, a.Username, a.Password, t.PrimaryEmail)
 	}
 }
