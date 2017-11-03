@@ -42,7 +42,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fus, err := os.Create("userpass-onsite.txt")
+	fus, err := os.Create("userpass-onsite.csv")
 	if err != nil {
 		panic(err)
 	}
@@ -66,7 +66,7 @@ func main() {
 			Password: fmt.Sprintf("p%d", rand.Intn(100)),
 		}
 		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
-		fus.WriteString(fmt.Sprintf("- %s: %s %s\n", a.FullName, a.Username, a.Password))
+		fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password))
 	}
 
 	// Online
