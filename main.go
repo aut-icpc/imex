@@ -23,6 +23,7 @@ import (
 
 func main() {
 	var rs map[string]map[int]imex.Register
+	//var rs map[string][]imex.Register
 	var fn string
 
 	fmt.Printf("AUT-ICPC JSON Filename: ")
