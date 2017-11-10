@@ -38,7 +38,8 @@ func SendMail(n string, u string, p string, e string) {
 	m.SetHeader("From", "ceit.ssc94@gmail.com")
 	m.SetHeader("To", e)
 	m.SetAddressHeader("Bcc", "sepehr.sabour@gmail.com", "pesehr")
-	m.SetHeader("Subject", "Hi")
+	m.SetHeader("Subject", "Extended version of 17th AUT ACM ICPC")
+	m.Embed("./mail/image.png")
 	m.SetBody("text/html", buf.String())
 
 	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman1")
