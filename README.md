@@ -1,4 +1,4 @@
-# imex
+# imex :left_right_arrow:
 ## Introduction
 Teams register in ICPC website and after that we export them into json file. This stanalone program read that json file
 and create accounts and teams file in TSV.
