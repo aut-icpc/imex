@@ -8,9 +8,10 @@
  * +===============================================
  */
 
-package imex
+package core
 
-// Account of domjudge
+// Account represents domjudge account.
+// each account assigns to a team.
 type Account struct {
 	Type     string
 	FullName string

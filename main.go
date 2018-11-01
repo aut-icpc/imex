@@ -18,12 +18,12 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AUT-CEIT-SSC/ICPC-imex/lib"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/core"
 	"github.com/AUT-CEIT-SSC/ICPC-imex/mail"
 )
 
 func main() {
-	var rs map[string]map[string]imex.Register
+	var rs map[string]map[string]core.Register
 	var fn string
 
 	fmt.Printf("AUT-ICPC JSON Filename: ")
@@ -65,18 +65,18 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		t := imex.Team{
+		t := core.Team{
 			Number:       id + 1,
 			EId:          id + 100,
 			GId:          3,
 			Name:         r.Name,
 			Institution:  r.Institute,
-			CountryCode:  imex.CountryCodes[r.Site],
+			CountryCode:  core.CountryCodes[r.Site],
 			PrimaryEmail: r.Members["first"].Email,
 		}
 		fmt.Printf("%+v\n", t)
 		fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
-		a := imex.Account{
+		a := core.Account{
 			Type:     "team",
 			FullName: t.Name,
 			Username: fmt.Sprintf("%03d", t.Number),      // team username
@@ -108,18 +108,18 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		t := imex.Team{
+		t := core.Team{
 			Number:       id + 1,
 			EId:          id + 100,
 			GId:          3,
 			Name:         r.Name,
 			Institution:  r.Institute,
-			CountryCode:  imex.CountryCodes[strings.Title(r.Site)],
+			CountryCode:  core.CountryCodes[strings.Title(r.Site)],
 			PrimaryEmail: r.Members["first"].Email,
 		}
 		fmt.Printf("%+v\n", t)
 		fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
-		a := imex.Account{
+		a := core.Account{
 			Type:     "team",
 			FullName: t.Name,
 			Username: fmt.Sprintf("%03d", t.Number),                              // team username

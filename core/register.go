@@ -8,16 +8,17 @@
  * +===============================================
  */
 
-package imex
+package core
 
-// Register of AUT-ICPC
+// Register contains registration data of AUT-ICPC website available
+// on http://icpc.aut.ac.ir/
 type Register struct {
 	Name      string `json:"team_name"`
 	Institute string `json:"institute_name"`
-	Site      string
-	Members   map[string]rMember
-}
-
-type rMember struct {
-	Email string `json:"email"`
+	Site      string `json:"site"`
+	Members   map[string]struct {
+		Email     string `json:"email"`
+		FirstName string `json:"first_name"`
+		LastName  string `json:"last_name"`
+	} `json:"members"`
 }
