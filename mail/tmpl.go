@@ -17,7 +17,7 @@ var tmplString = `
 <html>
         <body>
                 <h1>ACM ICPC AUT 18th</h1>
-                <p>Dear {{.Name}} of {{.Team}}</p>
+                <p>Dear {{.Name}} of the team {{.Team}}</p>
                 <p>Please write down your login information:</p>
                 <p><strong>Team {{.Team}}</strong></p>
                 <p><strong>Your username: {{.Account.Username}}</strong></p>
