@@ -93,8 +93,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fto.WriteString("teams\t1\n")
-	fao.WriteString("accounts\t1\n")
+	
+	if _, err := fto.WriteString("teams\t1\n"); err != nil {
+		panic(err)
+	}
+	if _, err := fao.WriteString("accounts\t1\n"); err != nil {
+		panic(err)
+	}
 	for i, r := range online {
 		t := convert.Convert(i+1, i+300, r)
 		log.Infof("On-Line Team: %+v\n", t)
