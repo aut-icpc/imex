@@ -37,11 +37,11 @@ func SendMail(n string, u string, p string, e string) {
 	m := gomail.NewMessage()
 	m.SetHeader("From", "ceit.ssc94@gmail.com")
 	m.SetHeader("To", e)
-	m.SetAddressHeader("Bcc", "sepehr.sabour@gmail.com", "pesehr")
+	m.SetAddressHeader("Bcc", "parham.alvani@gmail.com", "1995parham")
 	m.SetHeader("Subject", "Hi")
 	m.SetBody("text/html", buf.String())
 
-	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman1")
+	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
 	d.TLSConfig = &tls.Config{
 		InsecureSkipVerify: true,
 		ServerName:         "smtp.gmail.com",
