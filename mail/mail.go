@@ -15,7 +15,7 @@ import (
 	"crypto/tls"
 	"html/template"
 
-	gomail "gopkg.in/gomail.v2"
+	gomail "github.com/go-mail/mail"
 )
 
 type mailInfo struct {
@@ -24,15 +24,24 @@ type mailInfo struct {
 	Pass string
 }
 
-// SendMail sends mail into given mail
-func SendMail(n string, u string, p string, e string) {
+var tmpl *template.Template
+
+// parse template in initation phase
+func init() {
+	tmpl = template.Must(template.ParseFiles("./mail.tmpl"))
+}
+
+// SendMail sends mail into given mail address with template that is defined in mail.tmpl.
+// This mail contains username (u), password (p) of team (n) that has given email address (e).
+func SendMail(n string, u string, p string, e string) error {
 	buf := bytes.NewBufferString("")
-	tmpl := template.Must(template.ParseFiles("./mail/mail.tmpl"))
-	tmpl.Execute(buf, mailInfo{
+	if err := tmpl.Execute(buf, mailInfo{
 		Name: n,
 		User: u,
 		Pass: p,
-	})
+	}); err != nil {
+		return err
+	}
 
 	m := gomail.NewMessage()
 	m.SetHeader("From", "ceit.ssc94@gmail.com")
@@ -42,14 +51,15 @@ func SendMail(n string, u string, p string, e string) {
 	m.Embed("./mail/image.png")
 	m.SetBody("text/html", buf.String())
 
-	d := gomail.NewPlainDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
+	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
 	d.TLSConfig = &tls.Config{
 		InsecureSkipVerify: true,
 		ServerName:         "smtp.gmail.com",
 	}
 
-	// Send the email to Bob, Cora and Dan.
 	if err := d.DialAndSend(m); err != nil {
-		panic(err)
+		return err
 	}
+
+	return nil
 }
