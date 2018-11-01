@@ -41,14 +41,19 @@ func main() {
 	// Onsite Teams
 	// generates password and account number for each team.
 	// final results are written to files.
+
+	// domjudge team descriptions
 	fts, err := os.Create("teams-onsite.tsv")
 	if err != nil {
 		panic(err)
 	}
+	// domjudge accounts
 	fas, err := os.Create("accounts-onsite.tsv")
 	if err != nil {
 		panic(err)
 	}
+	// teams username and passwords for printing.
+	// these are printed for each team and putted in their boxes.
 	fus, err := os.Create("userpass-onsite.csv")
 	if err != nil {
 		panic(err)
@@ -56,7 +61,10 @@ func main() {
 	fts.WriteString("teams\t1\n")
 	fas.WriteString("accounts\t1\n")
 	for strID, r := range rs["onsite"] {
-		id, _ := strconv.Atoi(strID)
+		id, err := strconv.Atoi(strID)
+		if err != nil {
+			panic(err)
+		}
 		t := imex.Team{
 			Number:       id + 1,
 			EId:          id + 100,
@@ -71,8 +79,8 @@ func main() {
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
-			Username: fmt.Sprintf("%03d", t.Number),
-			Password: fmt.Sprintf("p%d", rand.Intn(100)),
+			Username: fmt.Sprintf("%03d", t.Number),      // team username
+			Password: fmt.Sprintf("p%d", rand.Intn(100)), // random password
 		}
 		fmt.Printf("%+v\n", a)
 		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
@@ -83,10 +91,13 @@ func main() {
 	// Online Teams
 	// generates password and account number for each team.
 	// final results are written to files and sent to their emails.
+
+	// domjudge team descriptions
 	fto, err := os.Create("teams-online.tsv")
 	if err != nil {
 		panic(err)
 	}
+	// domjudge accounts
 	fao, err := os.Create("accounts-online.tsv")
 	if err != nil {
 		panic(err)
@@ -94,7 +105,10 @@ func main() {
 	fto.WriteString("teams\t1\n")
 	fao.WriteString("accounts\t1\n")
 	for strID, r := range rs["online"] {
-		id, _ := strconv.Atoi(strID)
+		id, err := strconv.Atoi(strID)
+		if err != nil {
+			panic(err)
+		}
 		t := imex.Team{
 			Number:       id + 1,
 			EId:          id + 100,
@@ -109,8 +123,8 @@ func main() {
 		a := imex.Account{
 			Type:     "team",
 			FullName: t.Name,
-			Username: fmt.Sprintf("%03d", t.Number),
-			Password: fmt.Sprintf("P%03d%03d", rand.Intn(1000), rand.Intn(1000)),
+			Username: fmt.Sprintf("%03d", t.Number),                              // team username
+			Password: fmt.Sprintf("P%03d%03d", rand.Intn(1000), rand.Intn(1000)), // random password
 		}
 		fmt.Printf("%+v\n", a)
 		fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
