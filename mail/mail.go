@@ -41,7 +41,7 @@ func SendMail(n string, u string, p string, e string) {
 	m.SetHeader("Subject", "Hi")
 	m.SetBody("text/html", buf.String())
 
-	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
+	d := gomail.NewPlainDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
 	d.TLSConfig = &tls.Config{
 		InsecureSkipVerify: true,
 		ServerName:         "smtp.gmail.com",
