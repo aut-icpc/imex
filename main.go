@@ -86,7 +86,6 @@ func main() {
 		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
 		fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password))
 	}
-	return
 
 	// Online Teams
 	// generates password and account number for each team.
