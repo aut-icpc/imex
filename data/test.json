@@ -2,41 +2,38 @@
   "onsite": {
     "0": {
       "_id": "5bd4b703a94ddb70b02245af",
-      "team_name": "Lazy Coders",
+      "team_name": "703",
       "institute_name": "Amirkabir University of Technology",
       "site": "Iran",
       "members": {
         "first": {
-          "first_name": "Kourosh",
-          "last_name": "Shahnazari",
+          "first_name": "Parham",
+          "last_name": "Alvani",
           "gender": "male",
-          "student_number": "9731128",
+          "student_number": "9231058",
           "degree": "BSc.",
           "t-shirt_size": "2X Large",
-          "email": "kourosh@aut.ac.ir",
-          "phone": "09211001378",
+          "email": "parham.alvani@gmail.com",
           "agreement": "I do have read and accept the Regional contest rules and AUT local contest rules."
         },
         "second": {
-          "first_name": "Radin",
-          "last_name": "Shayanfar",
-          "gender": "male",
-          "student_number": "9731032",
+          "first_name": "S",
+          "last_name": "Z",
+          "gender": "female",
+          "student_number": "9131015",
           "degree": "BSc.",
           "t-shirt_size": "Large",
-          "email": "radin.shayanfar@aut.ac.ir",
-          "phone": "09123700334",
+          "email": "parham.alvani@gmail.com",
           "agreement": "I do have read and accept the Regional contest rules and AUT local contest rules."
         },
         "third": {
-          "first_name": "Delaram",
-          "last_name": "Rajaie",
+          "first_name": "E",
+          "last_name": "J",
           "gender": "female",
-          "student_number": "9731084",
+          "student_number": "9131036",
           "degree": "BSc.",
           "t-shirt_size": "Medium",
-          "email": "rajaied@yahoo.com",
-          "phone": "09199070925",
+          "email": "parham.alvani@gmail.com",
           "agreement": "I do have read and accept the Regional contest rules and AUT local contest rules."
         }
       },
@@ -52,18 +49,17 @@
   "online": {
     "0": {
       "_id": "5bd5a86da94ddb70b02245b4",
-      "team_name": "Poores",
-      "institute_name": "Khayyam University",
+      "team_name": "703",
+      "institute_name": "Amirkabir University of Technology",
       "site": "Iran",
       "members": {
         "first": {
-          "first_name": "Amir Sajjad",
-          "last_name": "Poursoltani",
+          "first_name": "Parham",
+          "last_name": "Alvani",
           "gender": "male",
-          "student_number": "9315410085",
+          "student_number": "9231058",
           "degree": "BSc.",
-          "email": "sajjadpooresq@gmail.com",
-          "phone": "09227820535",
+          "email": "parham.alvani@gmail.com",
           "agreement": "I do have read and accept the Regional contest rules and AUT local contest rules."
         },
         "second": {
@@ -72,8 +68,7 @@
           "gender": "male",
           "student_number": "",
           "degree": "BSc.",
-          "email": "",
-          "phone": ""
+          "email": ""
         },
         "third": {
           "first_name": "",
@@ -81,8 +76,7 @@
           "gender": "male",
           "student_number": "",
           "degree": "BSc.",
-          "email": "",
-          "phone": ""
+          "email": ""
         }
       },
       "status": {

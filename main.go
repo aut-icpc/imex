@@ -11,32 +11,26 @@
 package main
 
 import (
-	"encoding/json"
+	"flag"
 	"fmt"
-	"math/rand"
 	"os"
-	"strconv"
-	"strings"
 
-	"github.com/AUT-CEIT-SSC/ICPC-imex/core"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/aut"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/convert"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/domjudge"
 	"github.com/AUT-CEIT-SSC/ICPC-imex/mail"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
-	var rs map[string]map[string]core.Register
-	var fn string
+	var path string
+	flag.StringVar(&path, "path", "./data/test.json", "path to the team export of AUT-ICPC website")
+	flag.Parse()
 
-	fmt.Printf("AUT-ICPC JSON Filename: ")
-	fmt.Scanf("%s", &fn)
-
-	f, err := os.Open(fn)
+	onsite, online, err := aut.Import(path)
 	if err != nil {
 		panic(err)
 	}
-	if err := json.NewDecoder(f).Decode(&rs); err != nil {
-		panic(err)
-	}
-	fmt.Println(rs)
 
 	// Onsite Teams
 	// generates password and account number for each team.
@@ -58,33 +52,31 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fts.WriteString("teams\t1\n")
-	fas.WriteString("accounts\t1\n")
-	for strID, r := range rs["onsite"] {
-		id, err := strconv.Atoi(strID)
-		if err != nil {
+
+	if _, err := fts.WriteString("teams\t1\n"); err != nil {
+		panic(err)
+	}
+	if _, err := fas.WriteString("accounts\t1\n"); err != nil {
+		panic(err)
+	}
+	for i, r := range onsite {
+		t := convert.Convert(i+1, i+300, r)
+		log.Infof("On-Site Team: %+v\n", t)
+
+		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
 			panic(err)
 		}
-		t := core.Team{
-			Number:       id + 1,
-			EId:          id + 100,
-			GId:          3,
-			Name:         r.Name,
-			Institution:  r.Institute,
-			CountryCode:  core.CountryCodes[r.Site],
-			PrimaryEmail: r.Members["first"].Email,
+
+		a := domjudge.NewOnsiteAccount(t)
+
+		log.Infof("On-Site Account: %+v\n", a)
+
+		if _, err := fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
+			panic(err)
 		}
-		fmt.Printf("%+v\n", t)
-		fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
-		a := core.Account{
-			Type:     "team",
-			FullName: t.Name,
-			Username: fmt.Sprintf("%03d", t.Number),      // team username
-			Password: fmt.Sprintf("p%d", rand.Intn(100)), // random password
+		if _, err := fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password)); err != nil {
+			panic(err)
 		}
-		fmt.Printf("%+v\n", a)
-		fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
-		fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password))
 	}
 
 	// Online Teams
@@ -103,30 +95,28 @@ func main() {
 	}
 	fto.WriteString("teams\t1\n")
 	fao.WriteString("accounts\t1\n")
-	for strID, r := range rs["online"] {
-		id, err := strconv.Atoi(strID)
-		if err != nil {
+	for i, r := range online {
+		t := convert.Convert(i+1, i+300, r)
+		log.Infof("On-Line Team: %+v\n", t)
+
+		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
 			panic(err)
 		}
-		t := core.Team{
-			Number:       id + 1,
-			EId:          id + 100,
-			GId:          3,
-			Name:         r.Name,
-			Institution:  r.Institute,
-			CountryCode:  core.CountryCodes[strings.Title(r.Site)],
-			PrimaryEmail: r.Members["first"].Email,
+
+		a := domjudge.NewOnlineAccount(t)
+
+		log.Infof("On-Line Account: %+v\n", a)
+
+		if _, err := fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
+			panic(err)
 		}
-		fmt.Printf("%+v\n", t)
-		fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode))
-		a := core.Account{
-			Type:     "team",
-			FullName: t.Name,
-			Username: fmt.Sprintf("%03d", t.Number),                              // team username
-			Password: fmt.Sprintf("P%03d%03d", rand.Intn(1000), rand.Intn(1000)), // random password
+		if _, err := fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password)); err != nil {
+			panic(err)
 		}
-		fmt.Printf("%+v\n", a)
-		fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password))
-		mail.SendMail(a.FullName, a.Username, a.Password, t.PrimaryEmail)
+
+		if err := mail.SendMail(t, a); err != nil {
+			panic(err)
+		}
+		log.Infof("Successfully send an email to team %s", t.Name)
 	}
 }

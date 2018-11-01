@@ -12,52 +12,59 @@ package mail
 
 import (
 	"bytes"
-	"crypto/tls"
 	"html/template"
 
+	"github.com/AUT-CEIT-SSC/ICPC-imex/domjudge"
 	gomail "github.com/go-mail/mail"
 )
 
 type mailInfo struct {
-	Name string
-	User string
-	Pass string
+	Name    string
+	Team    string
+	Account domjudge.Account
 }
 
 var tmpl *template.Template
 
-// parse template in initation phase
 func init() {
-	tmpl = template.Must(template.ParseFiles("./mail.tmpl"))
+	var err error
+	tmpl, err = template.New("mail").Parse(tmplString)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // SendMail sends mail into given mail address with template that is defined in mail.tmpl.
-// This mail contains username (u), password (p) of team (n) that has given email address (e).
-func SendMail(n string, u string, p string, e string) error {
-	buf := bytes.NewBufferString("")
-	if err := tmpl.Execute(buf, mailInfo{
-		Name: n,
-		User: u,
-		Pass: p,
-	}); err != nil {
-		return err
-	}
+// This mail contains team and account information and sends per member.
+func SendMail(t domjudge.Team, a domjudge.Account) error {
+	for _, m := range t.Members {
 
-	m := gomail.NewMessage()
-	m.SetHeader("From", "ceit.ssc94@gmail.com")
-	m.SetHeader("To", e)
-	m.SetAddressHeader("Bcc", "parham.alvani@gmail.com", "1995parham")
-	m.SetHeader("Subject", "18th AUT ACM ICPC")
-	m.SetBody("text/html", buf.String())
+		if m.Email == "" { // do not send an email to who has no email.
+			continue
+		}
 
-	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
-	d.TLSConfig = &tls.Config{
-		InsecureSkipVerify: true,
-		ServerName:         "smtp.gmail.com",
-	}
+		buf := bytes.NewBufferString("")
+		if err := tmpl.Execute(buf, mailInfo{
+			Name:    m.FirstName,
+			Team:    t.Name,
+			Account: a,
+		}); err != nil {
+			return err
+		}
 
-	if err := d.DialAndSend(m); err != nil {
-		return err
+		ms := gomail.NewMessage()
+		ms.SetHeader("From", "ceit.ssc94@gmail.com")
+		ms.SetHeader("To", m.Email)
+		ms.SetAddressHeader("Bcc", "parham.alvani@gmail.com", "1995parham")
+		ms.SetHeader("Subject", "18th AUT ACM ICPC")
+		ms.SetBody("text/html", buf.String())
+
+		d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
+		d.StartTLSPolicy = gomail.MandatoryStartTLS
+
+		if err := d.DialAndSend(ms); err != nil {
+			return err
+		}
 	}
 
 	return nil

@@ -16,10 +16,25 @@ package mail
 import (
 	"testing"
 
+	"github.com/AUT-CEIT-SSC/ICPC-imex/common"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/domjudge"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestSendMail(t *testing.T) {
-	err := SendMail("Travis", "1995parham", "123123", "parham.alvani@gmail.com")
+	account := domjudge.Account{
+		Username: "1995parham",
+		Password: "123123",
+	}
+	team := domjudge.Team{
+		Name: "Travis",
+		Members: [3]common.Member{
+			common.Member{
+				FirstName: "Parham",
+				Email:     "parham.alvani@gmail.com",
+			},
+		},
+	}
+	err := SendMail(team, account)
 	assert.NoError(t, err)
 }

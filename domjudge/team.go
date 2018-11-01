@@ -8,9 +8,11 @@
  * +===============================================
  */
 
-package core
+package domjudge
 
-// Team of domjudge
+import "github.com/AUT-CEIT-SSC/ICPC-imex/common"
+
+// Team represents domjudge team.
 type Team struct {
 	Number          int
 	EId             int
@@ -19,5 +21,5 @@ type Team struct {
 	Institution     string
 	InstitutionCode string
 	CountryCode     string
-	PrimaryEmail    string
+	Members         [3]common.Member
 }
