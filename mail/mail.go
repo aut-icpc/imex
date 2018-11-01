@@ -48,7 +48,6 @@ func SendMail(n string, u string, p string, e string) error {
 	m.SetHeader("To", e)
 	m.SetAddressHeader("Bcc", "parham.alvani@gmail.com", "1995parham")
 	m.SetHeader("Subject", "18th AUT ACM ICPC")
-	m.Embed("./mail/image.png")
 	m.SetBody("text/html", buf.String())
 
 	d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
