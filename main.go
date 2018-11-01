@@ -18,8 +18,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/aut-icpc/imex/lib"
-	"github.com/aut-icpc/imex/mail"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/lib"
+	"github.com/AUT-CEIT-SSC/ICPC-imex/mail"
 )
 
 func main() {
