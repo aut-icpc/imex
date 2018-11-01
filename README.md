@@ -1,4 +1,6 @@
 # imex :left_right_arrow:
+[![Travis branch](https://img.shields.io/travis/com/AUT-CEIT-SSC/ICPC-imex/master.svg?style=flat-square)](https://travis-ci.com/AUT-CEIT-SSC/ICPC-imex)
+
 ## Introduction
 Teams register in ICPC website and after that we export them into json file. This stanalone program read that json file
 and create accounts and teams file in TSV.
