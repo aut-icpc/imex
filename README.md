@@ -5,6 +5,12 @@
 Teams register in ICPC website and after that we export them into json file. This stanalone program read that json file
 and create accounts and teams file in TSV.
 
+## Step by Step
+1. Export data from AUT-ICPC
+2. Run :runner:
+3. Import teams
+4. Import accounts
+
 ## File Formats
 ### Accounts.tsv
 
