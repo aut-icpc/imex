@@ -23,3 +23,10 @@
 # End of https://www.gitignore.io/api/go
 # Binary
 ICPC-imex
+
+# Generated files
+accounts-online.tsv
+accounts-onsite.tsv
+teams-online.tsv
+teams-onsite.tsv
+userpass-onsite.csv
