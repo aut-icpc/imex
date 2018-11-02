@@ -13,6 +13,7 @@ package aut
 import (
 	"encoding/json"
 	"os"
+	"strconv"
 
 	"github.com/AUT-CEIT-SSC/ICPC-imex/common"
 )
@@ -35,7 +36,7 @@ type Register struct {
 
 // Import imports data from a json file that is given by its path.
 // Please note this function expects AUT-ICPC format (refer to data/test.json for more information).
-func Import(path string) (onsite []Register, online []Register, err error) {
+func Import(path string) (onsite map[int]Register, online map[int]Register, err error) {
 	var rs map[string]map[string]Register
 
 	f, err := os.Open(path)
@@ -47,18 +48,32 @@ func Import(path string) (onsite []Register, online []Register, err error) {
 		return
 	}
 
-	for _, r := range rs["onsite"] {
+	onsite = make(map[int]Register)
+	for s, r := range rs["onsite"] {
+		var i int
+		i, err = strconv.Atoi(s)
+		if err != nil {
+			return
+		}
+
 		if r.Status.Status != "Finalized" {
 			continue
 		}
-		onsite = append(onsite, r)
+		onsite[i] = r
 	}
 
-	for _, r := range rs["online"] {
+	online = make(map[int]Register)
+	for s, r := range rs["online"] {
+		var i int
+		i, err = strconv.Atoi(s)
+		if err != nil {
+			return
+		}
+
 		if r.Status.Status != "Finalized" {
 			continue
 		}
-		online = append(online, r)
+		online[i] = r
 	}
 
 	return
