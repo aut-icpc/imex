@@ -27,6 +27,9 @@ func main() {
 	flag.StringVar(&path, "path", "./data/test.json", "path to the team export of AUT-ICPC website")
 	flag.Parse()
 
+	var isSendMail bool
+	flag.BoolVar(&isSendMail, "sendmail", false, "send mail to online contestant")
+
 	onsite, online, err := aut.Import(path)
 	if err != nil {
 		panic(err)
@@ -93,7 +96,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	
+
 	if _, err := fto.WriteString("teams\t1\n"); err != nil {
 		panic(err)
 	}
@@ -119,9 +122,11 @@ func main() {
 			panic(err)
 		}
 
-		if err := mail.SendMail(t, a); err != nil {
-			panic(err)
+		if isSendMail {
+			if err := mail.SendMail(t, a); err != nil {
+				panic(err)
+			}
+			log.Infof("Successfully send an email to team %s", t.Name)
 		}
-		log.Infof("Successfully send an email to team %s", t.Name)
 	}
 }
