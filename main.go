@@ -118,7 +118,7 @@ func main() {
 		t := convert.Convert(i+1, i+300, r)
 		log.Infof("On-Line Team: %+v\n", t)
 
-		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
+		if _, err := fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
 			panic(err)
 		}
 
@@ -126,10 +126,7 @@ func main() {
 
 		log.Infof("On-Line Account: %+v\n", a)
 
-		if _, err := fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
-			panic(err)
-		}
-		if _, err := fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password)); err != nil {
+		if _, err := fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
 			panic(err)
 		}
 
