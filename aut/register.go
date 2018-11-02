@@ -28,6 +28,9 @@ type Register struct {
 		Second common.Member `json:"second"`
 		Third  common.Member `json:"third"`
 	} `json:"members"`
+	Status struct {
+		Status string `json:"status"`
+	} `json:"status"`
 }
 
 // Import imports data from a json file that is given by its path.
@@ -45,10 +48,16 @@ func Import(path string) (onsite []Register, online []Register, err error) {
 	}
 
 	for _, r := range rs["onsite"] {
+		if r.Status.Status != "Finalized" {
+			continue
+		}
 		onsite = append(onsite, r)
 	}
 
 	for _, r := range rs["online"] {
+		if r.Status.Status != "Finalized" {
+			continue
+		}
 		online = append(online, r)
 	}
 
