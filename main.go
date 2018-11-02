@@ -129,4 +129,7 @@ func main() {
 			log.Infof("Successfully send an email to team %s", t.Name)
 		}
 	}
+
+	log.Infof("On-Site teams: %d", len(onsite))
+	log.Infof("On-Line teams: %d", len(online))
 }
