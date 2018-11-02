@@ -24,11 +24,12 @@ import (
 
 func main() {
 	var path string
-	flag.StringVar(&path, "path", "./data/test.json", "path to the team export of AUT-ICPC website")
-	flag.Parse()
-
 	var isSendMail bool
+
+	flag.StringVar(&path, "path", "./data/test.json", "path to the team export of AUT-ICPC website")
 	flag.BoolVar(&isSendMail, "sendmail", false, "send mail to online contestant")
+
+	flag.Parse()
 
 	onsite, online, err := aut.Import(path)
 	if err != nil {
