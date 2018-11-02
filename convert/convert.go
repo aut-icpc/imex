@@ -24,12 +24,13 @@ import (
 // is not unique then old record in domjudge will override. counter is just a simple counter :)
 func Convert(counter int, id int, r aut.Register) domjudge.Team {
 	return domjudge.Team{
-		Number:      counter,
-		EId:         id,
-		GId:         3,
-		Name:        r.Name,
-		Institution: r.Institute,
-		CountryCode: common.CountryCodes[r.Site],
+		Number:          counter,
+		EId:             id,
+		GId:             3,
+		Name:            r.Name,
+		Institution:     r.Institute,
+		InstitutionCode: common.InstitutionCodes[r.Institute],
+		CountryCode:     common.CountryCodes[r.Site],
 		Members: [3]common.Member{
 			r.Members.First,
 			r.Members.Second,
