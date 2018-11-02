@@ -59,7 +59,7 @@ func SendMail(t domjudge.Team, a domjudge.Account) error {
 		ms.SetHeader("Subject", "18th AUT ACM ICPC")
 		ms.SetBody("text/html", buf.String())
 
-		d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman13")
+		d := gomail.NewDialer("smtp.gmail.com", 465, "ceit.ssc94@gmail.com", "anjomananjoman")
 		d.StartTLSPolicy = gomail.MandatoryStartTLS
 
 		if err := d.DialAndSend(ms); err != nil {
