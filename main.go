@@ -133,7 +133,7 @@ func main() {
 
 		if isSendMail {
 			if err := mail.SendMail(t, a); err != nil {
-				panic(err)
+				log.Errof("Error on sending an email to team %s -- %s", t.Name, err)
 			}
 			log.Infof("Successfully send an email to team %s", t.Name)
 		}
