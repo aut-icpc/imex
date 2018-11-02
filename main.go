@@ -55,6 +55,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	// teams description for reception guys. These guys check these information when teams arrive.
+	frs, err := os.Create("reception-onsite.csv")
+	if err != nil {
+		panic(err)
+	}
 
 	if _, err := fts.WriteString("teams\t1\n"); err != nil {
 		panic(err)
@@ -68,6 +73,12 @@ func main() {
 
 		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
 			panic(err)
+		}
+
+		for _, m := range t.Members {
+			if _, err := frs.WriteString(fmt.Sprintf("%s, %s, %s, %s, %s\n", t.Name, m.FirstName, m.LastName, m.TShirt, m.StudentID)); err != nil {
+				panic(err)
+			}
 		}
 
 		a := domjudge.NewOnsiteAccount(t)
