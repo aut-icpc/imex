@@ -18,4 +18,6 @@ type Member struct {
 	Email     string `json:"email"`
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
+	TShirt    string `json:"t-shirt_size"`
+	StudentID string `json:"student_number"`
 }
