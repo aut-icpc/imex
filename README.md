@@ -36,6 +36,10 @@ Account Types are: team, judge, admin, analyst.
 
 For accounts of type team username is on the form **"team-nnn"** where "nnn" is the **zero padded team number** as given in teams.tsv.
 
+```tsv
+accounts	1
+team	Parham Test Team	team-500	B!5MWJiy
+```
 
 ### Teams.tsv
 
@@ -59,3 +63,8 @@ Then follow several lines with the following format (one per team).
 | 5     | Institution name | University of Virginia | string |
 | 6     | Institution short name | U Virginia | string |
 | 7     | Country Code | USA | string [ISO 3166-1 alpha-3](http://www.nationsonline.org/oneworld/country_code_list.htm) |
+
+```tsv
+teams	1
+500		3	Parham Test Team	Amirkabir University of Technology	AUT	IRN
+```
