@@ -34,7 +34,7 @@ Then follow several lines with the following format (one per account).
 
 Account Types are: team, judge, admin, analyst.
 
-For accounts of type team username is on the form "team-nnn" where "nnn" is the zero padded team number as given in teams.tsv.
+For accounts of type team username is on the form **"team-nnn"** where "nnn" is the **zero padded team number** as given in teams.tsv.
 
 
 ### Teams.tsv
