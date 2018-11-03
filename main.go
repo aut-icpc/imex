@@ -69,10 +69,10 @@ func main() {
 		panic(err)
 	}
 	for i, r := range onsite {
-		t := convert.Convert(i+300, i+300, r)
+		t := convert.Convert(i+300, r)
 		log.Infof("On-Site Team: %+v\n", t)
 
-		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
+		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.ExternalID, t.GroupID, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
 			panic(err)
 		}
 
@@ -116,10 +116,10 @@ func main() {
 		panic(err)
 	}
 	for i, r := range online {
-		t := convert.Convert(i+300, i+300, r)
+		t := convert.Convert(i+300, r)
 		log.Infof("On-Line Team: %+v\n", t)
 
-		if _, err := fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.EId, t.GId, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
+		if _, err := fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.ExternalID, t.GroupID, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
 			panic(err)
 		}
 

@@ -15,8 +15,8 @@ import "github.com/AUT-CEIT-SSC/ICPC-imex/common"
 // Team represents domjudge team.
 type Team struct {
 	Number          int
-	EId             int
-	GId             int
+	ExternalID      int
+	GroupID         int
 	Name            string
 	Institution     string
 	InstitutionCode string

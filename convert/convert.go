@@ -21,12 +21,13 @@ import (
 
 // Convert converts team registration information from AUT-ICPC to domjudge team.
 // please note that domjudge need an unique identifier for each team. If this identifier
-// is not unique then old record in domjudge will override. counter is just a simple counter :)
-func Convert(counter int, id int, r aut.Register) domjudge.Team {
+// is not unique then old record in domjudge will override.
+// ExternalID is not important and you can even do not pass it to Domjudge.
+func Convert(id int, r aut.Register) domjudge.Team {
 	return domjudge.Team{
-		Number:          counter,
-		EId:             id,
-		GId:             3,
+		Number:          id,
+		ExternalID:      id,
+		GroupID:         3,
 		Name:            r.Name,
 		Institution:     r.Institute,
 		InstitutionCode: common.InstitutionCodes[r.Institute],

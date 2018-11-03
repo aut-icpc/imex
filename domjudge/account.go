@@ -30,7 +30,7 @@ func NewOnsiteAccount(t Team) Account {
 	return Account{
 		Type:     "team",
 		FullName: t.Name,
-		Username: fmt.Sprintf("%d", t.EId),                                   // team username
+		Username: fmt.Sprintf("team-%03d", t.Number),                         // team username
 		Password: fmt.Sprintf("p%03d%03d", rand.Intn(1000), rand.Intn(1000)), // random password
 	}
 
@@ -42,7 +42,7 @@ func NewOnlineAccount(t Team) Account {
 	return Account{
 		Type:     "team",
 		FullName: t.Name,
-		Username: fmt.Sprintf("%d", t.EId),                                   // team username
+		Username: fmt.Sprintf("team-%03d", t.Number),                         // team username
 		Password: fmt.Sprintf("P%03d%03d", rand.Intn(1000), rand.Intn(1000)), // random password
 	}
 
