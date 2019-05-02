@@ -1,5 +1,5 @@
 # imex :left_right_arrow:
-[![CircleCI](https://circleci.com/gh/AUT-CEIT-SSC/ICPC-imex.svg?style=svg)](https://circleci.com/gh/AUT-CEIT-SSC/ICPC-imex)
+[![CircleCI](https://circleci.com/gh/aut-icpc/imex.svg?style=svg)](https://circleci.com/gh/aut-icpc/imex)
 
 ## Introduction
 Teams register in ICPC website and after that we export them into json file. This stanalone program read that json file
@@ -16,6 +16,19 @@ and create accounts and teams file in TSV.
 2. Run :runner: (In this step having caution is the most importatn point)
 3. Import teams
 4. Import accounts
+
+## Outputs
+### Based on Evand
+- teams-onsite.tsv
+- userpass-onsite.csv (Passed on the [BarTender Software](https://p30download.com/fa/entry/63267/))
+- accounts-onsite.tsv
+
+### Based on AUT ICPC
+#### on-site
+- teams-onsite.tsv (Import as teams)
+- userpass-onsite.csv (Passed on the [BarTender Software](https://p30download.com/fa/entry/63267/))
+- accounts-onsite.tsv (Import as accounts)
+#### on-line
 
 ## File Formats
 ### Accounts.tsv
