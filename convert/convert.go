@@ -14,10 +14,10 @@
 package convert
 
 import (
-	"github.com/AUT-CEIT-SSC/ICPC-imex/aut"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/common"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/domjudge"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/evand"
+	"github.com/aut-icpc/imex/aut"
+	"github.com/aut-icpc/imex/common"
+	"github.com/aut-icpc/imex/domjudge"
+	"github.com/aut-icpc/imex/evand"
 )
 
 // please note that domjudge need an unique identifier for each team. If this identifier

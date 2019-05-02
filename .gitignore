@@ -22,7 +22,7 @@
 
 # End of https://www.gitignore.io/api/go
 # Binary
-ICPC-imex
+imex
 
 # Generated files
 accounts-online.tsv

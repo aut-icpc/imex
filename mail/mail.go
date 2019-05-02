@@ -14,7 +14,7 @@ import (
 	"bytes"
 	"html/template"
 
-	"github.com/AUT-CEIT-SSC/ICPC-imex/domjudge"
+	"github.com/aut-icpc/imex/domjudge"
 	gomail "github.com/go-mail/mail"
 )
 

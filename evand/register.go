@@ -3,7 +3,7 @@ package evand
 import (
 	"strconv"
 
-	"github.com/AUT-CEIT-SSC/ICPC-imex/common"
+	"github.com/aut-icpc/imex/common"
 	"github.com/sirupsen/logrus"
 	"github.com/tealeg/xlsx"
 )

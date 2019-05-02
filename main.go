@@ -15,11 +15,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/AUT-CEIT-SSC/ICPC-imex/aut"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/convert"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/domjudge"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/evand"
-	"github.com/AUT-CEIT-SSC/ICPC-imex/mail"
+	"github.com/aut-icpc/imex/aut"
+	"github.com/aut-icpc/imex/convert"
+	"github.com/aut-icpc/imex/domjudge"
+	"github.com/aut-icpc/imex/evand"
+	"github.com/aut-icpc/imex/mail"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -15,7 +15,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/AUT-CEIT-SSC/ICPC-imex/common"
+	"github.com/aut-icpc/imex/common"
 )
 
 // Register contains registration data of AUT-ICPC website available

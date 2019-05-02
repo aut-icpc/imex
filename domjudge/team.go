@@ -10,7 +10,7 @@
 
 package domjudge
 
-import "github.com/AUT-CEIT-SSC/ICPC-imex/common"
+import "github.com/aut-icpc/imex/common"
 
 // Team represents domjudge team.
 type Team struct {
