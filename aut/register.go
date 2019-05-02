@@ -36,16 +36,17 @@ type Register struct {
 
 // Import imports data from a json file that is given by its path.
 // Please note this function expects AUT-ICPC format (refer to data/test.json for more information).
-func Import(path string) (onsite map[int]Register, online map[int]Register, err error) {
+func Import(path string) (map[int]Register, map[int]Register, error) {
+	online := make(map[int]Register)
+	onsite := make(map[int]Register)
 	var rs map[string]map[string]Register
 
 	f, err := os.Open(path)
 	if err != nil {
-		return
+		return onsite, online, err
 	}
-	err = json.NewDecoder(f).Decode(&rs)
-	if err != nil {
-		return
+	if err := json.NewDecoder(f).Decode(&rs); err != nil {
+		return onsite, online, err
 	}
 
 	onsite = make(map[int]Register)
@@ -53,7 +54,7 @@ func Import(path string) (onsite map[int]Register, online map[int]Register, err 
 		var i int
 		i, err = strconv.Atoi(s)
 		if err != nil {
-			return
+			return onsite, online, err
 		}
 
 		if r.Status.Status != "Finalized" {
@@ -67,7 +68,7 @@ func Import(path string) (onsite map[int]Register, online map[int]Register, err 
 		var i int
 		i, err = strconv.Atoi(s)
 		if err != nil {
-			return
+			return onsite, online, err
 		}
 
 		if r.Status.Status != "Finalized" {
@@ -76,5 +77,5 @@ func Import(path string) (onsite map[int]Register, online map[int]Register, err 
 		online[i] = r
 	}
 
-	return
+	return onsite, online, nil
 }
