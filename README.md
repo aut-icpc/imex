@@ -13,7 +13,7 @@ and create accounts and teams file in TSV.
 
 ## Step by Step
 1. Export data from AUT-ICPC
-2. Run :runner:
+2. Run :runner: (In this step having caution is the most importatn point :joy:)
 3. Import teams
 4. Import accounts
 
