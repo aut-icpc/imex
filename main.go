@@ -28,7 +28,11 @@ func main() {
 	var isSendMail bool
 	var tp string
 
-	flag.StringVar(&path, "path", "./data/test.json, ./data/apl.xslx", "path to the team export of AUT-ICPC website or Evand excel")
+	flag.StringVar(
+		&path, "path",
+		"./data/test.json, ./data/apl.xslx",
+		"path to the team export of AUT-ICPC website or Evand excel",
+	)
 	flag.BoolVar(&isSendMail, "sendmail", false, "send mail to online contestant")
 	flag.StringVar(&tp, "type", "aut", "aut, evand")
 
@@ -82,7 +86,14 @@ func Evand(path string) {
 		t := convert.FromEvand(i+400, r)
 		log.Infof("On-Site Team: %+v\n", t)
 
-		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.ExternalID, t.GroupID, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
+		if _, err := fts.WriteString(
+			fmt.Sprintf(
+				"%d\t%d\t%d\t%s\t%s\t%s\t%s\n",
+				t.Number, t.ExternalID, t.GroupID,
+				t.Name, t.Institution, t.InstitutionCode,
+				t.CountryCode,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
 
@@ -90,7 +101,13 @@ func Evand(path string) {
 
 		log.Infof("On-Site Account: %+v\n", a)
 
-		if _, err := fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
+		if _, err := fas.WriteString(
+			fmt.Sprintf(
+				"%s\t%s\t%s\t%s\n",
+				a.Type, a.FullName, a.Username,
+				a.Password,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
 		if _, err := fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password)); err != nil {
@@ -104,6 +121,16 @@ func AUT(path string, isSendMail bool) {
 	onsite, online, err := aut.Import(path)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	// Setup mailer for sending email to online contestant
+	var mailer mail.Mailer
+	if isSendMail {
+		var err error
+		mailer, err = mail.New("ceit.ssc94@gmail.com", "anjomananjoman", "AUT ICPC")
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	// Onsite Teams
@@ -142,12 +169,25 @@ func AUT(path string, isSendMail bool) {
 		t := convert.FromAUT(i+300, r)
 		log.Infof("On-Site Team: %+v\n", t)
 
-		if _, err := fts.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.ExternalID, t.GroupID, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
+		if _, err := fts.WriteString(
+			fmt.Sprintf(
+				"%d\t%d\t%d\t%s\t%s\t%s\t%s\n",
+				t.Number, t.ExternalID, t.GroupID,
+				t.Name, t.Institution, t.InstitutionCode,
+				t.CountryCode,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
 
 		for _, m := range t.Members {
-			if _, err := frs.WriteString(fmt.Sprintf("%s, %s, %s, %s, %s\n", t.Name, m.FirstName, m.LastName, m.TShirt, m.StudentID)); err != nil {
+			if _, err := frs.WriteString(
+				fmt.Sprintf(
+					"%s, %s, %s, %s, %s\n",
+					t.Name, m.FirstName, m.LastName,
+					m.TShirt, m.StudentID,
+				),
+			); err != nil {
 				log.Fatal(err)
 			}
 		}
@@ -156,10 +196,22 @@ func AUT(path string, isSendMail bool) {
 
 		log.Infof("On-Site Account: %+v\n", a)
 
-		if _, err := fas.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
+		if _, err := fas.WriteString(
+			fmt.Sprintf(
+				"%s\t%s\t%s\t%s\n",
+				a.Type, a.FullName, a.Username,
+				a.Password,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
-		if _, err := fus.WriteString(fmt.Sprintf("%s, %s, %s\n", a.FullName, a.Username, a.Password)); err != nil {
+		if _, err := fus.WriteString(
+			fmt.Sprintf(
+				"%s, %s, %s\n",
+				a.FullName, a.Username,
+				a.Password,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
 	}
@@ -188,7 +240,14 @@ func AUT(path string, isSendMail bool) {
 		t := convert.FromAUT(i+300, r)
 		log.Infof("On-Line Team: %+v\n", t)
 
-		if _, err := fto.WriteString(fmt.Sprintf("%d\t%d\t%d\t%s\t%s\t%s\t%s\n", t.Number, t.ExternalID, t.GroupID, t.Name, t.Institution, t.InstitutionCode, t.CountryCode)); err != nil {
+		if _, err := fto.WriteString(
+			fmt.Sprintf(
+				"%d\t%d\t%d\t%s\t%s\t%s\t%s\n",
+				t.Number, t.ExternalID, t.GroupID,
+				t.Name, t.Institution, t.InstitutionCode,
+				t.CountryCode,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
 
@@ -196,12 +255,18 @@ func AUT(path string, isSendMail bool) {
 
 		log.Infof("On-Line Account: %+v\n", a)
 
-		if _, err := fao.WriteString(fmt.Sprintf("%s\t%s\t%s\t%s\n", a.Type, a.FullName, a.Username, a.Password)); err != nil {
+		if _, err := fao.WriteString(
+			fmt.Sprintf(
+				"%s\t%s\t%s\t%s\n",
+				a.Type, a.FullName, a.Username,
+				a.Password,
+			),
+		); err != nil {
 			log.Fatal(err)
 		}
 
 		if isSendMail {
-			if err := mail.SendMail(t, a); err != nil {
+			if err := mailer.SendMail(t, a); err != nil {
 				log.Errorf("Error on sending an email to team %s -- %s", t.Name, err)
 			}
 			log.Infof("Successfully send an email to team %s", t.Name)
