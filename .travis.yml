@@ -1,17 +1,13 @@
 language: go
 
-go: "1.10"
+go: "1.12"
 
 go_import_path: github.com/AUT-CEIT-SSC/ICPC-imex
 
 before_install:
   - PKGS=$(go list ./... ) # All the import paths
-  - curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh # go dep
   - go get -u golang.org/x/lint/golint   # linter
   - go get -u github.com/kisielk/errcheck     # errcheck checks that you checked errors.
-
-install:
-  - dep ensure
 
 script:
   - go vet -v $PKGS                   # go vet is the official Go static analyzer
