@@ -32,8 +32,8 @@ func FromAUT(id int, r aut.Register) domjudge.Team {
 		GroupID:         3,
 		Name:            r.Name,
 		Institution:     r.Institute,
-		InstitutionCode: common.InstitutionCodes[r.Institute],
-		CountryCode:     common.CountryCodes[r.Site],
+		InstitutionCode: common.InstitutionCodes(r.Institute),
+		CountryCode:     common.CountryCodes(r.Site),
 		Members: [3]common.Member{
 			r.Members.First,
 			r.Members.Second,
@@ -50,8 +50,8 @@ func FromEvand(id int, r evand.Register) domjudge.Team {
 		GroupID:         3,
 		Name:            r.Name,
 		Institution:     r.Institute,
-		InstitutionCode: common.InstitutionCodes[r.Institute],
-		CountryCode:     common.CountryCodes["Iran"],
+		InstitutionCode: common.InstitutionCodes(r.Institute),
+		CountryCode:     common.CountryCodes("Iran"),
 		Members: [3]common.Member{
 			r.Members.First,
 			r.Members.Second,
