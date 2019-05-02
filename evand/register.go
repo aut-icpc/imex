@@ -25,10 +25,12 @@ type Register struct {
 // Import imports data from a excel file that is given by its path.
 // Please note this function expects Evand (https://evand.com/)
 // format (refer to data/apl.xlsx for more information).
-func Import(path string) (registers []Register, err error) {
+func Import(path string) ([]Register, error) {
+	registers := make([]Register, 0)
+
 	f, err := xlsx.OpenFile(path)
 	if err != nil {
-		return
+		return registers, nil
 	}
 
 	// use the first sheet
@@ -66,5 +68,5 @@ func Import(path string) (registers []Register, err error) {
 		}
 	}
 
-	return
+	return registers, nil
 }
