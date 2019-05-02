@@ -33,7 +33,7 @@ var tmplString = `
 */
 
 // on contest mail. this mail contains the login information.
-var tmplString = `
+const tmplString = `
 <html>
         <body>
 		<h1>ACM ICPC AUT 18th</h1>
