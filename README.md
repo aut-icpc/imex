@@ -19,9 +19,10 @@ and create accounts and teams file in TSV.
 
 ## Outputs
 ### Based on Evand
-- teams-onsite.tsv
+- teams-onsite.tsv (Import as teams)
 - userpass-onsite.csv (Passed on the [BarTender Software](https://p30download.com/fa/entry/63267/))
 - accounts-onsite.tsv
+- accounts-onsite.tsv (Import as accounts)
 
 ### Based on AUT ICPC
 #### on-site
