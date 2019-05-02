@@ -1,5 +1,5 @@
 # imex :left_right_arrow:
-[![Travis branch](https://img.shields.io/travis/com/AUT-CEIT-SSC/ICPC-imex/master.svg?style=flat-square)](https://travis-ci.com/AUT-CEIT-SSC/ICPC-imex)
+[![CircleCI](https://circleci.com/gh/AUT-CEIT-SSC/ICPC-imex.svg?style=svg)](https://circleci.com/gh/AUT-CEIT-SSC/ICPC-imex)
 
 ## Introduction
 Teams register in ICPC website and after that we export them into json file. This stanalone program read that json file
