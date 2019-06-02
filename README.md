@@ -1,5 +1,5 @@
 # imex :left_right_arrow:
-[![CircleCI](https://circleci.com/gh/aut-icpc/imex.svg?style=svg)](https://circleci.com/gh/aut-icpc/imex)
+[![Drone (cloud)](https://img.shields.io/drone/build/aut-icpc/imex.svg?style=flat-square)](https://cloud.drone.io/aut-icpc/imex)
 
 ## Introduction
 Teams register in ICPC website and after that we export them into json file. This stanalone program read that json file
