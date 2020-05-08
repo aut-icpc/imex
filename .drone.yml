@@ -4,7 +4,7 @@ name: default
 
 steps:
   - name: lint
-    image: golangci-lint
+    image: golangci/golangci-lint
     commands:
       - golangci-lint run --enable-all
   - name: test
